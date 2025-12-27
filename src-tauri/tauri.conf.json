@@ -1,0 +1,33 @@
+{
+  "package": {
+    "productName": "Pixel Art Gen",
+    "version": "0.2.0"
+  },
+  "tauri": {
+    "windows": [
+      {
+        "title": "Pixel Art Gen — Desktop Painter",
+        "width": 1400,
+        "height": 960,
+        "minWidth": 900,
+        "minHeight": 720
+      }
+    ],
+    "bundle": {
+      "identifier": "com.pixelartgen.desktop",
+      "active": true
+    },
+    "updater": {
+      "active": false
+    },
+    "allowlist": {
+      "all": true
+    }
+  },
+  "build": {
+    "beforeDevCommand": "",
+    "beforeBuildCommand": "",
+    "devPath": "../src",
+    "distDir": "../src"
+  }
+}
