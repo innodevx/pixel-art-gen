@@ -1,0 +1,14 @@
+{
+  "name": "pixel-art-gen",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "tauri": "tauri",
+    "tauri:dev": "tauri dev",
+    "tauri:build": "tauri build"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^1.6.2"
+  }
+}

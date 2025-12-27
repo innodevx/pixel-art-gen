@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixel Art Gen — Desktop Painter</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>Pixel Art Gen — Desktop Painter</h1>
+        <p class="lede">
+          Draw on the canvas, describe your idea, and let the built-in AI inspired
+          filter remix your strokes into a preview. You can keep iterating without
+          leaving the desktop.
+        </p>
+      </div>
+      <div class="meta">
+        <span class="pill">Tauri desktop</span>
+        <span class="pill pill-ghost">Local canvas</span>
+        <span class="pill pill-ghost">AI preview</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="workspace">
+        <div class="toolbar">
+          <label class="control">
+            <span>Brush color</span>
+            <input type="color" id="colorPicker" value="#6e3aff" />
+          </label>
+          <label class="control">
+            <span>Brush size</span>
+            <input type="range" id="brushSize" min="1" max="60" value="10" />
+            <span id="brushLabel" class="hint">10 px</span>
+          </label>
+          <div class="control actions">
+            <button id="eraserToggle" class="ghost">🧽 Eraser</button>
+            <button id="clearCanvas" class="ghost">🧹 Clear</button>
+            <button id="fillCanvas" class="ghost">🪣 Fill</button>
+          </div>
+          <div class="control palette" aria-label="quick palette">
+            <button class="swatch" data-color="#111827" style="--swatch:#111827"></button>
+            <button class="swatch" data-color="#f9fafb" style="--swatch:#f9fafb"></button>
+            <button class="swatch" data-color="#0ea5e9" style="--swatch:#0ea5e9"></button>
+            <button class="swatch" data-color="#22c55e" style="--swatch:#22c55e"></button>
+            <button class="swatch" data-color="#f97316" style="--swatch:#f97316"></button>
+            <button class="swatch" data-color="#ef4444" style="--swatch:#ef4444"></button>
+            <button class="swatch" data-color="#eab308" style="--swatch:#eab308"></button>
+            <button class="swatch" data-color="#a855f7" style="--swatch:#a855f7"></button>
+          </div>
+        </div>
+
+        <div class="canvas-shell">
+          <canvas id="paint" width="896" height="896"></canvas>
+          <div class="canvas-meta">
+            <span class="hint">Hold the mouse (or stylus) and draw. Scroll to resize brush.</span>
+            <span class="hint">Tip: use the eraser or fill tools to reshape large areas.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="sidebar">
+        <div class="panel">
+          <h2>Prompt</h2>
+          <p class="hint">Describe what the AI should emphasize in the remix. The canvas is always respected.</p>
+          <textarea id="prompt" rows="4" placeholder="Cinematic blue neon skyline, pixelated glow, soft gradients..."></textarea>
+          <div class="panel-row">
+            <button id="generate" class="primary">⚡ Generate preview</button>
+            <button id="applyPreview" class="ghost" disabled>⬇️ Apply to canvas</button>
+          </div>
+          <p id="status" class="status">Waiting for your first idea.</p>
+        </div>
+
+        <div class="panel preview">
+          <h2>AI Preview</h2>
+          <div class="preview-frame" id="previewFrame">
+            <p class="hint">Hit “Generate preview” to see the AI remix. The result never leaves your device.</p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Session tips</h3>
+          <ul class="tips">
+            <li>Use quick swatches to set a palette before sketching.</li>
+            <li>Scroll over the canvas to change brush size on the fly.</li>
+            <li>After generating, apply the preview back to the canvas to iterate.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Made for local creativity. Nothing is uploaded while drawing or previewing.</p>
+    </footer>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
