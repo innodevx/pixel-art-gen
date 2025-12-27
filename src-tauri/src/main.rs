@@ -2,7 +2,7 @@
 
 use anyhow::Result;
 use base64::{engine::general_purpose::STANDARD as BASE64, Engine};
-use image::{codecs::png::PngEncoder, ColorType, GenericImageView, ImageBuffer, Rgba, RgbaImage};
+use image::{codecs::png::PngEncoder, ColorType, Rgba, RgbaImage};
 use rand::{rngs::StdRng, Rng, SeedableRng};
 use serde::Serialize;
 use std::{collections::hash_map::DefaultHasher, hash::Hash, hash::Hasher, io::Cursor};
@@ -88,7 +88,7 @@ fn prompt_palette(prompt: &str, rng: &mut StdRng) -> [u8; 3] {
 fn encode_png_data_url(img: &CanvasImage) -> Result<String> {
     let mut buf = Cursor::new(Vec::new());
     let encoder = PngEncoder::new(&mut buf);
-    encoder.encode(&img, img.width(), img.height(), ColorType::Rgba8)?;
+    encoder.write_image(img.as_raw(), img.width(), img.height(), ColorType::Rgba8)?;
     let encoded = BASE64.encode(buf.into_inner());
     Ok(format!("data:image/png;base64,{}", encoded))
 }
